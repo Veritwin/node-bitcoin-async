@@ -1,15 +1,18 @@
 {
-  "name": "bitcoin",
-  "description": "Communicate with bitcoind via JSON-RPC",
+  "name": "@veritwin/bitcoin-async",
+  "description": "Bitcoin Core JSON-RPC API client with async processing in the style of the Async Node.js module",
   "version": "3.0.3",
   "main": "lib/index.js",
   "keywords": [
     "bitcoin",
-    "rpc"
+    "rpc",
+    "async"
   ],
   "author": "William Casarin <jb55@jb55.com>",
   "contributors": [
-    "Sean Lavine <sean@eternalrise.com>"
+    "Sean Lavine <sean@eternalrise.com>",
+    "thehobbit85 <thehobbit85@gmail.com>",
+    "Cláudio de Castro <claudio@hiades.com.br>"
   ],
   "dependencies": {},
   "devDependencies": {
@@ -20,19 +23,19 @@
   "optionalDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git://github.com/jb55/node-bitcoin.git"
+    "url": "git@github.com:Veritwin/node-bitcoin-async.git"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">=0.10.0"
   },
   "scripts": {
     "pretest": "standard --verbose",
     "test": "make test"
   },
   "bugs": {
-    "url": "https://github.com/jb55/node-bitcoin/issues"
+    "url": "https://github.com/Veritwin/node-bitcoin-async/issues"
   },
-  "homepage": "https://github.com/jb55/node-bitcoin",
+  "homepage": "https://github.com/Veritwin/node-bitcoin-async",
   "directories": {
     "test": "test"
   },
