@@ -1,22 +1,22 @@
-# node-bitcoin
-[![travis][travis-image]][travis-url]
+# node-bitcoin-async
 [![npm][npm-image]][npm-url]
 [![downloads][downloads-image]][downloads-url]
 [![js-standard-style][standard-image]][standard-url]
 
-[travis-image]: https://travis-ci.org/freewil/node-bitcoin.svg?branch=master
-[travis-url]: https://travis-ci.org/freewil/node-bitcoin
+[npm-image]: https://img.shields.io/npm/v/@veritwin/bitcoin-async.svg?style=flat
+[npm-url]: https://npmjs.org/package/@veritwin/bitcoin-async
 
-[npm-image]: https://img.shields.io/npm/v/bitcoin.svg?style=flat
-[npm-url]: https://npmjs.org/package/bitcoin
-
-[downloads-image]: https://img.shields.io/npm/dm/bitcoin.svg?style=flat
-[downloads-url]: https://npmjs.org/package/bitcoin
+[downloads-image]: https://img.shields.io/npm/dm/@veritwin/bitcoin-async.svg?style=flat
+[downloads-url]: https://npmjs.org/package/@veritwin/bitcoin-async
 
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat
 [standard-url]: http://standardjs.com
 
-node-bitcoin is a simple wrapper for the Bitcoin client's JSON-RPC API.
+This is a Bitcoin Core JSON-RPC API client with async processing in the style of the [Async](https://github.com/caolan/async.git)
+Node.js module.
+
+> Note: it is a modified version of the [bitcoin](https://github.com/jb55/node-bitcoin.git) Node.js module. In
+> particular it changes the way how batch RPC method calls are processed. See [below](#batch-multiple-rpc-calls-into-single-http-request) for more details.
 
 The API is equivalent to the API document [here](https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_Calls_list).
 The methods are exposed as lower camelcase methods on the `bitcoin.Client`
@@ -24,7 +24,7 @@ object, or you may call the API directly using the `cmd` method.
 
 ## Install
 
-`npm install bitcoin`
+`npm install @veritwin/bitcoin-async`
 
 ## Examples
 
@@ -68,9 +68,15 @@ for (var i = 0; i < 10; ++i) {
     params: ['myaccount']
   });
 }
-client.cmd(batch, function(err, address, resHeaders) {
-  if (err) return console.log(err);
+client.cmd(batch, function(address, resHeaders, cb) {
+  // This function is called after a successful call for each of the RPC methods
+  //  in the batch
   console.log('Address:', address);
+  cb();
+}, function (err) {
+  // This method is called after calling all the RPC methods or whenever an error takes
+  //  place while calling ony of the methods
+  if (err) return console.log(err);
 });
 ```
 
