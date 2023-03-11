@@ -14,6 +14,9 @@
     "thehobbit85 <thehobbit85@gmail.com>",
     "Cláudio de Castro <claudio@hiades.com.br>"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {},
   "devDependencies": {
     "clone": "^1.0.2",
